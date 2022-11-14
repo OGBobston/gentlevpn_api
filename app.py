@@ -15,7 +15,10 @@ def index():
 @app.route('/users/list', methods=['GET'])
 def getUsers():
     output = subprocess.check_output([r'cd /usr/local/openvpn_as/scripts/ && ./sacli UserPropGet'], shell=True)
-    return jsonify({'users': output})
+    answer = output
+    print(output)
+    print(answer)
+    return await jsonify({'users': answer})
 
 if __name__ == '__main__':
     from waitress import serve
