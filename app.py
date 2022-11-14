@@ -16,7 +16,7 @@ def index():
 def getUsers():
     output = subprocess.check_output([r'cd /usr/local/openvpn_as/scripts/ && ./sacli UserPropGet'], shell=True)
     answer = output
-    return {'users': answer}
+    return answer
 
 if __name__ == '__main__':
     from waitress import serve
