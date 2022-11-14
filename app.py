@@ -14,4 +14,4 @@ def getUsers():
     return jsonify({'users': output})
 
 if __name__ == '__main__':
-    app.run(host="46.17.107.78", port=7777, debug=True)
+    app.run(host="46.17.107.78", port=7777, debug=False)
