@@ -18,7 +18,7 @@ def getUsers():
     answer = output
     print(output)
     print(answer)
-    return await jsonify({'users': answer})
+    return jsonify({'users': answer})
 
 if __name__ == '__main__':
     from waitress import serve
