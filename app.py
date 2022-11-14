@@ -16,10 +16,8 @@ def index():
 def getUsers():
     output = subprocess.check_output([r'cd /usr/local/openvpn_as/scripts/ && ./sacli UserPropGet'], shell=True)
     answer = output
-    print(output)
-    print(answer)
-    return jsonify({'users': answer})
+    return {'users': answer}
 
 if __name__ == '__main__':
     from waitress import serve
-    serve(app, host="46.17.107.78", port=7777)
+    serve(app, host="127.0.0.1", port=3256)
