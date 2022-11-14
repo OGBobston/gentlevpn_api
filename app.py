@@ -1,7 +1,7 @@
 #!flask/bin/python
 from flask import Flask
-import os, subprocess, jsonify
-
+import os, subprocess
+from flask import jsonify
 # jsonify
 # waitress
 # flask
