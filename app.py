@@ -23,7 +23,7 @@ def getUsers():
     output = ''
     for key in answer:
         userData = answer[key]
-        line = "Логин: " + key + ", тип: " userData['type']
+        line = "Логин: " + key + ", тип: " + userData['type']
         if("prop_autologin" in userData):
             if(userData['prop_autologin'] == "true"): line = line + ", автологин"
         if("pvt_password_digest" in userData): line = line + ", установлен пароль"
