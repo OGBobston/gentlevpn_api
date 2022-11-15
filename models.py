@@ -1,9 +1,6 @@
 from peewee import *
 
-class BaseModel(Model):
-    class Meta:
-        database = users
-
+users = SqliteDatabase('users.db')
 
 class User(BaseModel):
     id = PrimaryKeyField(null=False)
@@ -11,5 +8,6 @@ class User(BaseModel):
     status = IntegerField(max_length=1)
 
     class Meta:
+        database = users
         db_table = "users"
         order_by = ('id',)

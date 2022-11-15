@@ -1,8 +1,6 @@
 from peewee import *
 from models import *
 
-users = SqliteDatabase('users.db')
-
 class UsersDatabase(object):
 
     def __init__(self):
