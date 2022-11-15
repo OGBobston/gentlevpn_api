@@ -18,11 +18,11 @@ def index():
 
 @app.route('/users/list', methods=['GET'])
 def getUsers():
-    answer = OVPN.getUsersList()
+    answer = vpn.getUsersList()
     return answer
 
 if __name__ == '__main__':
     from waitress import serve
     serve(app, host="0.0.0.0", port=3256)
 
-    ovpn = OVPN(r"/usr/local/openvpn_as/scripts/")
+    vpn = OVPN(r"/usr/local/openvpn_as/scripts/")
