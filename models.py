@@ -2,7 +2,7 @@ from peewee import *
 
 users = SqliteDatabase('users.db')
 
-class User(BaseModel):
+class User(Model):
     id = PrimaryKeyField(null=False)
     tgid = IntegerField(max_length=50)
     status = IntegerField(max_length=1)
