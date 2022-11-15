@@ -1,13 +1,11 @@
 from peewee import *
 from models import *
 
+users = SqliteDatabase('users.db')
 
 class UsersDatabase(object):
 
     def __init__(self):
-        users = SqliteDatabase('users.db', pragmas={
-            'journal_mode': 'wal',
-            'cache_size': -1024 * 64})
         try:
             users.connect()
             User.create_table()
