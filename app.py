@@ -3,6 +3,7 @@ from flask import Flask
 from flask import jsonify
 from ovpn import OVPN
 import json
+from nemiling import Nemiling
 # jsonify
 # waitress
 # flask
@@ -13,25 +14,29 @@ import json
 
 app = Flask(__name__)
 vpn = OVPN(r"/usr/local/openvpn_as/scripts/")
+payservice = Nemiling()
 
 @app.route('/')
 def index():
     return "Hello, World!"
 
-@app.route('/users/list', methods=['GET'])
+@app.route('/users/check', methods=['GET'])
 def getUsers():
     answer = json.loads(vpn.getUsersList())
     output = ''
     for key in answer:
         userData = answer[key]
-        print(key)
-        print(userData)
         line = "Логин: " + key + ", тип: " + userData['type']
         if("prop_autologin" in userData):
             if(userData['prop_autologin'] == "true"): line = line + ", автологин"
         if("pvt_password_digest" in userData): line = line + ", установлен пароль"
-        output = output + line
+        output = output + line + "\n"
     return output
+
+@app.route('/users/check/<int:uid>', methods=['GET'])
+def checkUser(uid):
+    answer = payservice.checkMember(uid)
+    return answer
 
 if __name__ == '__main__':
     from waitress import serve
