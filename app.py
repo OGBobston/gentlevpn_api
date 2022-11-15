@@ -28,7 +28,7 @@ def index():
     return "Hello, World!"
 
 @app.route('/users/server', methods=['GET'])
-def getUsers():
+def getUsersFromServer():
     answer = json.loads(vpn.getUsersList())
     output = ''
     for key in answer:
