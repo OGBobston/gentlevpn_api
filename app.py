@@ -11,6 +11,7 @@ from ovpn import OVPN
 # firewall-cmd --reload
 
 app = Flask(__name__)
+vpn = OVPN(r"/usr/local/openvpn_as/scripts/")
 
 @app.route('/')
 def index():
@@ -19,10 +20,9 @@ def index():
 @app.route('/users/list', methods=['GET'])
 def getUsers():
     answer = vpn.getUsersList()
+    print(answer)
     return answer
 
 if __name__ == '__main__':
     from waitress import serve
     serve(app, host="0.0.0.0", port=3256)
-
-    vpn = OVPN(r"/usr/local/openvpn_as/scripts/")
