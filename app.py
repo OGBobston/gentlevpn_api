@@ -1,10 +1,14 @@
 #!flask/bin/python
 from flask import Flask
-import os, subprocess
 from flask import jsonify
+from ovpn import OVPN
 # jsonify
 # waitress
 # flask
+
+# how to open port
+# firewall-cmd --zone=public --add-port=80/tcp --permanent
+# firewall-cmd --reload
 
 app = Flask(__name__)
 
@@ -14,10 +18,11 @@ def index():
 
 @app.route('/users/list', methods=['GET'])
 def getUsers():
-    output = subprocess.check_output([r'cd /usr/local/openvpn_as/scripts/ && ./sacli UserPropGet'], shell=True)
-    answer = output
+    answer = OVPN.getUsersList()
     return answer
 
 if __name__ == '__main__':
     from waitress import serve
     serve(app, host="0.0.0.0", port=3256)
+
+    ovpn = OVPN(r"/usr/local/openvpn_as/scripts/")
