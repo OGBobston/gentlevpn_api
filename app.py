@@ -2,6 +2,7 @@
 from flask import Flask
 from flask import jsonify
 from ovpn import OVPN
+import json
 # jsonify
 # waitress
 # flask
@@ -19,17 +20,17 @@ def index():
 
 @app.route('/users/list', methods=['GET'])
 def getUsers():
-    answer = vpn.getUsersList()
+    answer = json.loads(vpn.getUsersList())
     output = ''
     for key in answer:
         userData = answer[key]
         print(key)
         print(userData)
-        # line = "Логин: " + key + ", тип: " + userData['type']
-        # if("prop_autologin" in userData):
-        #     if(userData['prop_autologin'] == "true"): line = line + ", автологин"
-        # if("pvt_password_digest" in userData): line = line + ", установлен пароль"
-        # output = output + line
+        line = "Логин: " + key + ", тип: " + userData['type']
+        if("prop_autologin" in userData):
+            if(userData['prop_autologin'] == "true"): line = line + ", автологин"
+        if("pvt_password_digest" in userData): line = line + ", установлен пароль"
+        output = output + line
     return output
 
 if __name__ == '__main__':

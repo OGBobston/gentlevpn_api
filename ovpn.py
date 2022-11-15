@@ -14,6 +14,5 @@ class OVPN(object):
 
     def getUsersList(self):
         command = self.cdCommand + " " + self.openvpnPath + " && " + self.getUsersCommand
-        print(command)
         output = self.getConsoleOutput(command)
         return output
