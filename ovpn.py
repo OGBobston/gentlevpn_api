@@ -10,7 +10,7 @@ class OVPN(object):
 
     def getConsoleOutput(self, command):
         output = subprocess.check_output([command], shell=True)
-        return "Braking"
+        return output
 
     def getUsersList(self):
         command = self.cdCommand + " " + self.openvpnPath + " && " + self.getUsersCommand
