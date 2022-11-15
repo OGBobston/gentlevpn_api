@@ -17,5 +17,5 @@ class UsersDatabase(object):
         )
         user.save()
 
-    def getAllUsers():
+    def getAllUsers(self):
         return User.select()

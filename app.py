@@ -43,7 +43,15 @@ def getUsersFromServer():
 @app.route('/users/list', methods=['GET'])
 def getUsers():
     answer = usersDB.getAllUsers()
-    return answer
+    users_data = []
+    for user in answer:
+        users_data.append({
+            'id': user.id,
+            'tgid': user.tgid,
+            'status': user.status
+        })
+    print(users_data)
+    return users_data
 
 @app.route('/users/check/<int:uid>', methods=['GET'])
 def checkUser(uid):
