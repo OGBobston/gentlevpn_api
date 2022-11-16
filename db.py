@@ -11,15 +11,16 @@ class UsersDatabase(object):
             print("DB connect error")
 
     def addUser(self, id):
-        user = User.get(User.tgid == id).select()
-        if(len(user) == 0):
-            user = User(
-                tgid=id,
-                status=0
-            )
-            ret = user.save()
-        else:
-            ret = "Пользователь " + str(id) + " уже существует."
+        try:
+            user = User.get(User.tgid == id).select()
+        except models.UserDoesNotExist:
+            return "Пользователь " + str(id) + " уже существует."
+
+        user = User(
+            tgid=id,
+            status=0
+        )
+        ret = user.save()
         return ret
 
     def deleteUser(self, id):
