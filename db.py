@@ -7,8 +7,8 @@ class UsersDatabase(object):
         try:
             users.connect()
             User.create_table()
-        except peewee.InternalError as px:
-            print(str(px))
+        except E:
+            print(str(E))
 
     def addUser(self, id):
         user = User(
@@ -18,7 +18,7 @@ class UsersDatabase(object):
         user.save()
 
     def deleteUser(self, id):
-        user = User.get(Category.tgid == id)
+        user = User.get(User.tgid == id)
         user.delete_instance()
 
     def getAllUsers(self):
