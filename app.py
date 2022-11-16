@@ -59,18 +59,29 @@ def getUsers():
 
 @app.route('/users/check/<int:uid>', methods=['GET'])
 def checkUser(uid):
-    answer = payservice.checkMember(uid)
-    print(answer)
-    answerDB = usersDB.setStatusPayed(uid)
-    ret = "Ошибка"
-    if(answerDB == 1): ret = "Успешно"
+    try:
+        answer = payservice.checkMember(uid)
+        payserviceData = {}
+        ret = "Ошибка"
+
+        if(answer.status == "ok"):
+            payserviceData = answer.message
+
+        if(payserviceData.active == 1):
+            answerDB = usersDB.setStatusPayed(uid)
+            ret = "Подписка активна до " + str(payserviceData.end_date) + "."
+        else:
+            answerDB = usersDB.setStatusNotPayed(uid)
+            ret = "Подписка не оплачена."
+    except:
+        ret = "Ошибка запроса данных."
+
     return ret
 
 @app.route('/users/add/<int:uid>', methods=['GET'])
 def addUser(uid):
-    answer = usersDB.addUser(uid)
-    ret = "Ошибка"
-    if(answer == 1): ret = "Успешно"
+    ret = usersDB.addUser(uid)
+    if(answer == 1): ret = "Вы успешно зарегистрировались!"
     return ret
 
 @app.route('/users/remove/<int:uid>', methods=['GET'])

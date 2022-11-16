@@ -11,17 +11,24 @@ class UsersDatabase(object):
             print("DB connect error")
 
     def addUser(self, id):
-        user = User(
-            tgid=id,
-            status=0
-        )
-        ret = user.save()
+        user = User.get(User.tgid == id)
+        if(!user):
+            user = User(
+                tgid=id,
+                status=0
+            )
+            ret = user.save()
+        else:
+            ret = "Пользователь " + str(id) + " уже существует."
         return ret
 
     def deleteUser(self, id):
-        user = User.get(User.tgid == id)
-        ret = user.delete_instance()
-        return ret
+        try:
+            user = User.get(User.tgid == id)
+            ret = user.delete_instance()
+            return ret
+        except:
+            return 0
 
     def getAllUsers(self):
         return User.select()
