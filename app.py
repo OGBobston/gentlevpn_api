@@ -64,17 +64,18 @@ def checkUser(uid):
         payserviceData = {}
         ret = "Ошибка"
 
-        if(answer.status == "ok"):
-            payserviceData = answer.message
+        if(answer['status'] == "ok"):
+            payserviceData = answer.['message']
 
-        if(payserviceData.active == 1):
+        if(payserviceData.['active'] == 1):
             answerDB = usersDB.setStatusPayed(uid)
-            ret = "Подписка активна до " + str(payserviceData.end_date) + "."
+            ret = "Подписка активна до " + str(payserviceData.['end_date']) + "."
         else:
             answerDB = usersDB.setStatusNotPayed(uid)
             ret = "Подписка не оплачена."
-    except:
+    except Exception as e:
         ret = "Ошибка запроса данных."
+        print(e)
 
     return ret
 

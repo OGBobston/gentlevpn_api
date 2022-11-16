@@ -12,7 +12,7 @@ class UsersDatabase(object):
 
     def addUser(self, id):
         user = User.get(User.tgid == id).select()
-        if(user.length == 0):
+        if(len(user) == 0):
             user = User(
                 tgid=id,
                 status=0
