@@ -60,21 +60,25 @@ def getUsers():
 @app.route('/users/check/<int:uid>', methods=['GET'])
 def checkUser(uid):
     answer = payservice.checkMember(uid)
-    usersDB.setStatusPayed(uid)
     print(answer)
-    return answer
+    answerDB = usersDB.setStatusPayed(uid)
+    ret = "Ошибка"
+    if(answerDB == 1): ret = "Успешно"
+    return ret
 
 @app.route('/users/add/<int:uid>', methods=['GET'])
 def addUser(uid):
     answer = usersDB.addUser(uid)
-    print(answer)
-    return answer
+    ret = "Ошибка"
+    if(answer == 1): ret = "Успешно"
+    return ret
 
 @app.route('/users/remove/<int:uid>', methods=['GET'])
 def removeUser(uid):
     answer = usersDB.deleteUser(uid)
-    print(answer)
-    return answer
+    ret = "Ошибка"
+    if(answer == 1): ret = "Успешно"
+    return ret
 
 if __name__ == '__main__':
     from waitress import serve
