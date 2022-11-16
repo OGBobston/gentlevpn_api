@@ -11,8 +11,8 @@ class UsersDatabase(object):
             print("DB connect error")
 
     def addUser(self, id):
-        user = User.get(User.tgid == id)
-        if(!user):
+        user = User.get(User.tgid == id).select()
+        if(user.length == 0):
             user = User(
                 tgid=id,
                 status=0
