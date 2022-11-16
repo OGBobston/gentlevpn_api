@@ -65,11 +65,11 @@ def checkUser(uid):
         ret = "Ошибка"
 
         if(answer['status'] == "ok"):
-            payserviceData = answer.['message']
+            payserviceData = answer['message']
 
-        if(payserviceData.['active'] == 1):
+        if(payserviceData['active'] == 1):
             answerDB = usersDB.setStatusPayed(uid)
-            ret = "Подписка активна до " + str(payserviceData.['end_date']) + "."
+            ret = "Подписка активна до " + str(payserviceData['end_date']) + "."
         else:
             answerDB = usersDB.setStatusNotPayed(uid)
             ret = "Подписка не оплачена."
