@@ -15,11 +15,13 @@ class UsersDatabase(object):
             tgid=id,
             status=0
         )
-        user.save()
+        ret = user.save()
+        return ret
 
     def deleteUser(self, id):
         user = User.get(User.tgid == id)
-        user.delete_instance()
+        ret = user.delete_instance()
+        return ret
 
     def getAllUsers(self):
         return User.select()
