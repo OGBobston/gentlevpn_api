@@ -52,7 +52,7 @@ def getUsers():
             'status': user.status
         })
         payed = ", подписка не оплачена"
-        if(user.status == 1) payed = ", подписка оплачена"
+        if(user.status == 1): payed = ", подписка оплачена"
         line = "ID: " + user.id + ", tgid: " + user.tgid + payed
         users_data_text = users_data_text + line + "\n"
     return users_data_text
