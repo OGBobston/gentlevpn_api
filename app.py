@@ -53,13 +53,14 @@ def getUsers():
         })
         payed = ", подписка не оплачена"
         if(user.status == 1): payed = ", подписка оплачена"
-        line = "ID: " + user.id + ", tgid: " + user.tgid + payed
+        line = "ID: " + user.id + ", tgid: " + user.tgid + payed + " : status= " + user.status
         users_data_text = users_data_text + line + "\n"
     return users_data_text
 
 @app.route('/users/check/<int:uid>', methods=['GET'])
 def checkUser(uid):
     answer = payservice.checkMember(uid)
+    usersDB.setStatusPayed(uid)
     print(answer)
     return answer
 
