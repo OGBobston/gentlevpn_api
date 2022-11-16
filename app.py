@@ -44,23 +44,35 @@ def getUsersFromServer():
 def getUsers():
     answer = usersDB.getAllUsers()
     users_data = []
+    users_data_text = ''
     for user in answer:
         users_data.append({
             'id': user.id,
             'tgid': user.tgid,
             'status': user.status
         })
-    print(users_data)
-    return users_data
+        payed = ", подписка не оплачена"
+        if(user.status == 1) payed = ", подписка оплачена"
+        line = "ID: " + user.id + ", tgid: " + user.tgid + payed
+        users_data_text = users_data_text + line + "\n"
+    return users_data_text
 
 @app.route('/users/check/<int:uid>', methods=['GET'])
 def checkUser(uid):
     answer = payservice.checkMember(uid)
+    print(answer)
     return answer
 
 @app.route('/users/add/<int:uid>', methods=['GET'])
 def addUser(uid):
     answer = usersDB.addUser(uid)
+    print(answer)
+    return answer
+
+@app.route('/users/remove/<int:uid>', methods=['GET'])
+def removeUser(uid):
+    answer = usersDB.deleteUser(uid)
+    print(answer)
     return answer
 
 if __name__ == '__main__':

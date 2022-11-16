@@ -4,7 +4,7 @@ users = SqliteDatabase('users.db')
 
 class User(Model):
     id = PrimaryKeyField(null=False)
-    tgid = IntegerField()
+    tgid = IntegerField(unique=True)
     status = IntegerField()
 
     class Meta:

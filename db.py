@@ -17,5 +17,9 @@ class UsersDatabase(object):
         )
         user.save()
 
+    def deleteUser(self, id):
+        user = User.get(Category.tgid == id)
+        user.delete_instance()
+
     def getAllUsers(self):
         return User.select()
