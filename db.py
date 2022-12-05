@@ -6,7 +6,6 @@ class UsersDatabase(object):
     def __init__(self):
         try:
             users.connect()
-            # User.create_table()
         except:
             print("DB connect error")
 

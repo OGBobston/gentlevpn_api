@@ -65,8 +65,6 @@ def checkUser(uid):
         answer = payservice.checkMember(uid)
         payserviceData = {}
 
-        print(answer)
-
         if(answer['status'] == "ok"):
             payserviceData = answer['message']
 
