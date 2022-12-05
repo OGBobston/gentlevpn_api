@@ -14,6 +14,7 @@ from db import UsersDatabase
 # wget https://www.sqlite.org/2022/sqlite-autoconf-3390400.tar.gz
 # tar xvfz sqlite-autoconf-3390400.tar.gz
 # cd sqlite-autoconf-3390400 && ./configure && make && make install
+# sqlite3 users
 
 # how to open port
 # firewall-cmd --zone=public --add-port=80/tcp --permanent

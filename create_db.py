@@ -1,10 +1,8 @@
 from peewee import *
 from models import *
 
-class UsersDatabase(object):
-
-    def __init__(self):
-        try:
-            User.create_table()
-        except:
-            print("DB create error")
+if __name__ == '__main__':
+    try:
+        User.create_table()
+    except:
+        print("DB create error")
