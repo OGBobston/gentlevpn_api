@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: cp1251 -*-
+
 #!flask/bin/python
 from flask import Flask
 from flask import jsonify
@@ -12,6 +15,7 @@ from db import UsersDatabase
 # peewee
 # mkdir sqlite3 && cd sqlite3
 # wget https://www.sqlite.org/2022/sqlite-autoconf-3390400.tar.gz
+# tar xvfz sqlite-autoconf-3390400.tar.gz
 # cd sqlite-autoconf-3390400 && ./configure && make && make install
 
 # how to open port
