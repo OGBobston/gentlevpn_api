@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: cp1251 -*-
-
 #!flask/bin/python
 from flask import Flask
 from flask import jsonify
@@ -63,12 +60,12 @@ def getUsers():
 
 @app.route('/users/check/<int:uid>', methods=['GET'])
 def checkUser(uid):
+    ret = "Ошибка"
     try:
         answer = payservice.checkMember(uid)
         payserviceData = {}
-        ret = "Ошибка"
 
-        print(payserviceData)
+        print(answer)
 
         if(answer['status'] == "ok"):
             payserviceData = answer['message']
