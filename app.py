@@ -68,6 +68,8 @@ def checkUser(uid):
         payserviceData = {}
         ret = "Ошибка"
 
+        print(payserviceData)
+
         if(answer['status'] == "ok"):
             payserviceData = answer['message']
 
