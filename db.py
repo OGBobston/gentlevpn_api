@@ -31,12 +31,21 @@ class UsersDatabase(object):
             return 0
 
     def getAllUsers(self):
-        return User.select()
+        try:
+            return User.select()
+        except Exception as e:
+            print(e)
 
     def setStatusPayed(self, id):
-        user = User.get(User.tgid == id)
-        user.status = 1
+        try:
+            user = User.get(User.tgid == id)
+            user.status = 1
+        except Exception as e:
+            print(e)
 
     def setStatusNotPayed(self, id):
-        user = User.get(User.tgid == id)
-        user.status = 0
+        try:
+            user = User.get(User.tgid == id)
+            user.status = 0
+        except Exception as e:
+            print(e)
