@@ -81,9 +81,11 @@ def checkUser(uid):
         if(payserviceData['active'] == "1"):
             answerDB = usersDB.setStatusPayed(uid)
             ret = "Подписка активна до " + str(payserviceData['end_date']) + "."
+            vpn.register(str(uid))
         else:
             answerDB = usersDB.setStatusNotPayed(uid)
             ret = "Подписка не оплачена."
+            vpn.deleteUser(str(uid))
     except Exception as e:
         ret = "Ошибка запроса данных."
         print(e)
