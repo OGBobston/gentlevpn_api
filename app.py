@@ -93,10 +93,10 @@ def checkUser(uid):
     return ret
 
 @app.route('/users/add/<int:uid>', methods=['GET'])
-def addUser(self, uid):
+def addUser(uid):
     try:
         answer = usersDB.addUser(uid)
-        self.checkUser(uid)
+        checkUser(uid)
         if(answer == 1): ret = "Вы успешно зарегистрировались!"
         else: ret = "Что-то пошло не так."
     except Exception as e:
