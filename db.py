@@ -12,16 +12,16 @@ class UsersDatabase(object):
     def addUser(self, id):
         try:
             user = User.get(User.tgid == id).select()
-        except Exception as e:
-            print(e)
-            return 0
-        except models.Sets.DoesNotExist:
+        except models.User.DoesNotExist:
             user = User(
                 tgid=id,
                 status=0
             )
             ret = user.save()
             return ret
+        except Exception as e:
+            print(e)
+            return 0
 
     def deleteUser(self, id):
         try:
