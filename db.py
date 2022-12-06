@@ -12,7 +12,7 @@ class UsersDatabase(object):
     def addUser(self, id):
         try:
             user = User.get(User.tgid == id).select()
-        except models.User.DoesNotExist:
+        except User.DoesNotExist:
             user = User(
                 tgid=id,
                 status=0
