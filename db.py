@@ -6,7 +6,7 @@ class UsersDatabase(object):
     def __init__(self):
         try:
             users.connect()
-            User.create_table()
+            # User.create_table()
         except Exception as e:
             print(e)
 
@@ -14,16 +14,16 @@ class UsersDatabase(object):
         try:
             user = User.get(User.tgid == id).select()
         # except models.UserDoesNotExist:
-        except Exception as e:
             # return "Пользователь " + str(id) + " уже существует."
-            return e
 
-        user = User(
-            tgid=id,
-            status=0
-        )
-        ret = user.save()
-        return ret
+            user = User(
+                tgid=id,
+                status=0
+            )
+            ret = user.save()
+            return ret
+        except Exception as e:
+            return e
 
     def deleteUser(self, id):
         try:

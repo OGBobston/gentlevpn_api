@@ -92,17 +92,25 @@ def checkUser(uid):
 
 @app.route('/users/add/<int:uid>', methods=['GET'])
 def addUser(uid):
-    answer = usersDB.addUser(uid)
-    if(answer == 1): ret = "Вы успешно зарегистрировались!"
-    else: ret = "Что-то пошло не так."
+    try:
+        answer = usersDB.addUser(uid)
+        if(answer == 1): ret = "Вы успешно зарегистрировались!"
+        else: ret = "Что-то пошло не так."
+    except Exception as e:
+        ret = "Ошибка запроса данных."
+        print(e)
     return ret
 
 @app.route('/users/remove/<int:uid>', methods=['GET'])
 def removeUser(uid):
-    answer = usersDB.deleteUser(uid)
-    ret = "Ошибка"
-    if(answer == 1): ret = "Успешно"
-    else: ret = "Что-то пошло не так."
+    try:
+        answer = usersDB.deleteUser(uid)
+        ret = "Ошибка"
+        if(answer == 1): ret = "Успешно"
+        else: ret = "Что-то пошло не так."
+    except Exception as e:
+        ret = "Ошибка запроса данных."
+        print(e)
     return ret
 
 if __name__ == '__main__':
