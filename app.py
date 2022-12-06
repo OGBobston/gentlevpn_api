@@ -51,7 +51,7 @@ def getUsers():
     try:
         answer = usersDB.getAllUsers()
         users_data = []
-        users_data_text = ''
+        users_data_text = 'Пусто.'
         for user in answer:
             users_data.append({
                 'id': user.id,
