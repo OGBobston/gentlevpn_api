@@ -6,7 +6,7 @@ class UsersDatabase(object):
     def __init__(self):
         try:
             users.connect()
-            # User.create_table()
+            User.create_table()
         except Exception as e:
             print(e)
 
@@ -23,7 +23,8 @@ class UsersDatabase(object):
             ret = user.save()
             return ret
         except Exception as e:
-            return e
+            print(e)
+            return 0
 
     def deleteUser(self, id):
         try:
