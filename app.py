@@ -65,6 +65,7 @@ def checkUser(uid):
     try:
         answer = payservice.checkMember(uid)
         payserviceData = {}
+        print(answer)
 
         if(answer['status'] == "ok"):
             payserviceData = answer['message']
@@ -85,6 +86,7 @@ def checkUser(uid):
 def addUser(uid):
     ret = usersDB.addUser(uid)
     if(answer == 1): ret = "Вы успешно зарегистрировались!"
+    else: ret = "Что-то пошло не так."
     return ret
 
 @app.route('/users/remove/<int:uid>', methods=['GET'])
@@ -92,6 +94,7 @@ def removeUser(uid):
     answer = usersDB.deleteUser(uid)
     ret = "Ошибка"
     if(answer == 1): ret = "Успешно"
+    else: ret = "Что-то пошло не так."
     return ret
 
 if __name__ == '__main__':
