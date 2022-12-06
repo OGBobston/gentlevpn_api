@@ -116,12 +116,12 @@ def removeUser(uid):
 
 @app.route('/certificate/get/<int:uid>', methods=['GET'])
 def getCertificate(uid):
-try:
-    file = vpn.getCertificate(uid)
-except Exception as e:
-    file = "Ошибка запроса данных."
-    print(e)
-return file
+    try:
+        file = vpn.getCertificate(uid)
+    except Exception as e:
+        file = "Ошибка запроса данных."
+        print(e)
+    return file
 
 if __name__ == '__main__':
     from waitress import serve
