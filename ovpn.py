@@ -44,8 +44,9 @@ class OVPN(object):
         username = str(username)
         command = self.cdCommand + " " + self.openvpnPath + " && " + self.userCommand + " " + username + " " + self.getAutologinCommand + username + ".ovpn"
         output = self.getConsoleOutput(command)
-        file = open(r'/home/profiles/' + username + r'.ovpn', 'rb')
-        return file
+        path = r'/home/profiles/' + username + r'.ovpn'
+        filen = open(path, 'rb')
+        return path
 
     def deleteUser(self, username):
         username = str(username)
