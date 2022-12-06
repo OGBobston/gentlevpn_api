@@ -67,6 +67,9 @@ def checkUser(uid):
         answer = json.loads(answer)
         payserviceData = {}
 
+        print(answer)
+        print(answer['message']['active'])
+
         if(answer['status'] == "ok"):
             payserviceData = answer['message']
 
