@@ -4,7 +4,7 @@ from models import *
 if __name__ == '__main__':
     try:
         User.create_table()
+        users.connect()
         print("ok")
-        print(User)
     except:
         print("DB create error")
