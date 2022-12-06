@@ -29,6 +29,7 @@ class OVPN(object):
         return output
 
     def register(self, username):
+        username = str(username)
         command = self.cdCommand + " " + self.openvpnPath + " && " + self.userCommand + " " + username + " " + self.typeUserConnectCommand
         output = self.getConsoleOutput(command)
         print(output)
@@ -40,12 +41,14 @@ class OVPN(object):
         self.updateServer()
 
     def getCertificate(self, username):
+        username = str(username)
         command = self.cdCommand + " " + self.openvpnPath + " && " + self.userCommand + " " + username + " " + self.getAutologinCommand + " " + username + ".ovpn"
         output = self.getConsoleOutput(command)
         file = open(r'/home/profiles/' + username + r'.ovpn', 'rb')
         return file
 
     def deleteUser(self, username):
+        username = str(username)
         command = self.cdCommand + " " + self.openvpnPath + " && " + self.userCommand + " " + username + " " + self.deleteUserCommand
         output = self.getConsoleOutput(command)
         print(output)

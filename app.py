@@ -81,11 +81,11 @@ def checkUser(uid):
         if(payserviceData['active'] == "1"):
             answerDB = usersDB.setStatusPayed(uid)
             ret = "Подписка активна до " + str(payserviceData['end_date']) + "."
-            vpn.register(str(uid))
+            vpn.register(uid)
         else:
             answerDB = usersDB.setStatusNotPayed(uid)
             ret = "Подписка не оплачена."
-            vpn.deleteUser(str(uid))
+            vpn.deleteUser(uid)
     except Exception as e:
         ret = "Ошибка запроса данных."
         print(e)
@@ -110,6 +110,7 @@ def removeUser(uid):
         ret = "Ошибка"
         if(answer == 1): ret = "Успешно"
         else: ret = "Что-то пошло не так."
+        vpn.deleteUser(uid)
     except Exception as e:
         ret = "Ошибка запроса данных."
         print(e)
