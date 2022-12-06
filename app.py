@@ -62,10 +62,10 @@ def getUsers():
             if(user.status == 1): payed = ", подписка оплачена"
             line = "ID: " + str(user.id) + ", tgid: " + str(user.tgid) + payed + " : status= " + str(user.status)
             users_data_text = users_data_text + line + "\n"
-        return users_data_text
     except Exception as e:
-        ret = "Ошибка запроса данных."
+        users_data_text = "Ошибка запроса данных."
         print(e)
+    return users_data_text
 
 @app.route('/users/check/<int:uid>', methods=['GET'])
 def checkUser(uid):
