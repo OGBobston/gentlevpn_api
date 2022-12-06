@@ -11,6 +11,7 @@ class OVPN(object):
         self.userCommand =  r"./sacli --user"
         self.typeUserConnectCommand = r'--key "type" --value "user_connect" UserPropPut'
         self.propAutologinCommand = r'--key "prop_autologin" --value "true" UserPropPut'
+        self.getAutologinCommand = r"GetAutoLogin >/home/profiles/"
 
     def getConsoleOutput(self, command):
         output = subprocess.check_output([command], shell=True)
@@ -22,10 +23,16 @@ class OVPN(object):
         return output
 
     def register(self, username):
-        command = self.cdCommand + " " + self.openvpnPath + " && " + self.userCommand + " " + self.typeUserConnectCommand
-        output = output = self.getConsoleOutput(command)
+        command = self.cdCommand + " " + self.openvpnPath + " && " + self.userCommand + " " + username + " " + self.typeUserConnectCommand
+        output = self.getConsoleOutput(command)
         print(output)
-        
-        command = self.cdCommand + " " + self.openvpnPath + " && " + self.userCommand + " " + self.propAutologinCommand
-        output = output = self.getConsoleOutput(command)
+
+        command = self.cdCommand + " " + self.openvpnPath + " && " + self.userCommand + " " + username + " " + self.propAutologinCommand
+        output = self.getConsoleOutput(command)
         print(output)
+
+    def getCertificate(self, username):
+        command = self.cdCommand + " " + self.openvpnPath + " && " + self.userCommand + " " + username + " " + self.getAutologinCommand + " " + username + ".ovpn"
+        output = self.getConsoleOutput(command)
+        file = open(r'/home/profiles/' + username + r'.ovpn', 'rb')
+        return file

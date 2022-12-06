@@ -51,7 +51,7 @@ def getUsers():
     try:
         answer = usersDB.getAllUsers()
         users_data = []
-        users_data_text = 'Пусто.'
+        users_data_text = ''
         for user in answer:
             users_data.append({
                 'id': user.id,
@@ -112,6 +112,16 @@ def removeUser(uid):
         ret = "Ошибка запроса данных."
         print(e)
     return ret
+
+
+@app.route('/certificate/get/<int:uid>', methods=['GET'])
+def getCertificate(uid):
+try:
+    file = vpn.getCertificate(uid)
+except Exception as e:
+    file = "Ошибка запроса данных."
+    print(e)
+return file
 
 if __name__ == '__main__':
     from waitress import serve

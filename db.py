@@ -12,6 +12,9 @@ class UsersDatabase(object):
     def addUser(self, id):
         try:
             user = User.get(User.tgid == id).select()
+            print(str(user))
+            user = User.get(User.tgid == id)
+            print(str(user))
         except User.DoesNotExist:
             user = User(
                 tgid=id,
@@ -41,6 +44,7 @@ class UsersDatabase(object):
         try:
             user = User.get(User.tgid == id)
             user.status = 1
+            user.save()
         except Exception as e:
             print(e)
 
@@ -48,5 +52,6 @@ class UsersDatabase(object):
         try:
             user = User.get(User.tgid == id)
             user.status = 0
+            user.save()
         except Exception as e:
             print(e)
