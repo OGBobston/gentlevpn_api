@@ -5,6 +5,7 @@ class UsersDatabase(object):
 
     def __init__(self):
         try:
+            User.create_table()
             users.connect()
         except:
             print("DB connect error")
@@ -12,8 +13,10 @@ class UsersDatabase(object):
     def addUser(self, id):
         try:
             user = User.get(User.tgid == id).select()
-        except models.UserDoesNotExist:
-            return "Пользователь " + str(id) + " уже существует."
+        # except models.UserDoesNotExist:
+        except Exception as e:
+            # return "Пользователь " + str(id) + " уже существует."
+            return e
 
         user = User(
             tgid=id,

@@ -31,33 +31,41 @@ def index():
 
 @app.route('/users/server', methods=['GET'])
 def getUsersFromServer():
-    answer = json.loads(vpn.getUsersList())
-    output = ''
-    for key in answer:
-        userData = answer[key]
-        line = "Логин: " + key + ", тип: " + userData['type']
-        if("prop_autologin" in userData):
-            if(userData['prop_autologin'] == "true"): line = line + ", автологин"
-        if("pvt_password_digest" in userData): line = line + ", установлен пароль"
-        output = output + line + "\n"
-    return output
+    try:
+        answer = json.loads(vpn.getUsersList())
+        output = ''
+        for key in answer:
+            userData = answer[key]
+            line = "Логин: " + key + ", тип: " + userData['type']
+            if("prop_autologin" in userData):
+                if(userData['prop_autologin'] == "true"): line = line + ", автологин"
+            if("pvt_password_digest" in userData): line = line + ", установлен пароль"
+            output = output + line + "\n"
+        return output
+    except Exception as e:
+        ret = "Ошибка запроса данных."
+        print(e)
 
 @app.route('/users/list', methods=['GET'])
 def getUsers():
-    answer = usersDB.getAllUsers()
-    users_data = []
-    users_data_text = ''
-    for user in answer:
-        users_data.append({
-            'id': user.id,
-            'tgid': user.tgid,
-            'status': user.status
-        })
-        payed = ", подписка не оплачена"
-        if(user.status == 1): payed = ", подписка оплачена"
-        line = "ID: " + str(user.id) + ", tgid: " + str(user.tgid) + payed + " : status= " + str(user.status)
-        users_data_text = users_data_text + line + "\n"
-    return users_data_text
+    try:
+        answer = usersDB.getAllUsers()
+        users_data = []
+        users_data_text = ''
+        for user in answer:
+            users_data.append({
+                'id': user.id,
+                'tgid': user.tgid,
+                'status': user.status
+            })
+            payed = ", подписка не оплачена"
+            if(user.status == 1): payed = ", подписка оплачена"
+            line = "ID: " + str(user.id) + ", tgid: " + str(user.tgid) + payed + " : status= " + str(user.status)
+            users_data_text = users_data_text + line + "\n"
+        return users_data_text
+    except Exception as e:
+        ret = "Ошибка запроса данных."
+        print(e)
 
 @app.route('/users/check/<int:uid>', methods=['GET'])
 def checkUser(uid):
