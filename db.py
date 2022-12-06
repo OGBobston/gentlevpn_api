@@ -5,10 +5,10 @@ class UsersDatabase(object):
 
     def __init__(self):
         try:
-            User.create_table()
             users.connect()
-        except:
-            print("DB connect error")
+            User.create_table()
+        except Exception as e:
+            print(e)
 
     def addUser(self, id):
         try:
