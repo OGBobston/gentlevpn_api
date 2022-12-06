@@ -6,6 +6,8 @@ if __name__ == '__main__':
         if not users.is_closed():
             users.close()
         User.create_table()
+        users.connect()
+        print(User.select())
         print("ok")
     except Exception as e:
         print(e)
