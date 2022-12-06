@@ -84,7 +84,7 @@ def checkUser(uid):
 
 @app.route('/users/add/<int:uid>', methods=['GET'])
 def addUser(uid):
-    ret = usersDB.addUser(uid)
+    answer = usersDB.addUser(uid)
     if(answer == 1): ret = "Вы успешно зарегистрировались!"
     else: ret = "Что-то пошло не так."
     return ret
