@@ -6,7 +6,6 @@ class UsersDatabase(object):
     def __init__(self):
         try:
             users.connect()
-            User.create_table()
         except Exception as e:
             print(e)
 
@@ -36,7 +35,7 @@ class UsersDatabase(object):
 
     def getAllUsers(self):
         try:
-            return User.select()
+            return User.select().execute()
         except Exception as e:
             print(e)
 

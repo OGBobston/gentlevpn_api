@@ -7,7 +7,6 @@ if __name__ == '__main__':
             users.close()
         users.connect()
         User.create_table()
-        print(User.select())
-        print("ok")
+        print(User.select().execute())
     except Exception as e:
         print(e)
