@@ -124,7 +124,7 @@ def getCertificate(uid):
     except Exception as e:
         file = "Ошибка запроса данных."
         print(e)
-    return file
+    return send_file(file)
 
 if __name__ == '__main__':
     from waitress import serve
