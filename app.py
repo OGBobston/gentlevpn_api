@@ -93,7 +93,7 @@ def checkUser(uid):
     return ret
 
 @app.route('/users/add/<int:uid>', methods=['GET'])
-def addUser(uid):
+def addUser(self, uid):
     try:
         answer = usersDB.addUser(uid)
         self.checkUser(uid)
