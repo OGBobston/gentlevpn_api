@@ -6,5 +6,5 @@ if __name__ == '__main__':
         User.create_table()
         users.connect()
         print("ok")
-    except:
-        print("DB create error")
+    except Exception as e:
+        print(e)
