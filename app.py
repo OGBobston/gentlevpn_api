@@ -10,6 +10,9 @@ from db import UsersDatabase
 # flask
 # requests
 # peewee
+# pymysql
+
+
 # mkdir sqlite3 && cd sqlite3
 # wget https://www.sqlite.org/2022/sqlite-autoconf-3390400.tar.gz
 # tar xvfz sqlite-autoconf-3390400.tar.gz
@@ -19,6 +22,10 @@ from db import UsersDatabase
 # how to open port
 # firewall-cmd --zone=public --add-port=80/tcp --permanent
 # firewall-cmd --reload
+
+# Открыть порты tcp 80, 3256, 943, 1194, 443
+# udp 1194, 443
+
 
 app = Flask(__name__)
 vpn = OVPN(r"/usr/local/openvpn_as/scripts/")

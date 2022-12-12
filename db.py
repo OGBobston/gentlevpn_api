@@ -5,7 +5,8 @@ class UsersDatabase(object):
 
     def __init__(self):
         try:
-            users.connect()
+            connection.connect()
+            connection.create_tables([User])
         except Exception as e:
             print(e)
 

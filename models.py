@@ -1,6 +1,10 @@
 from peewee import *
 
-users = SqliteDatabase('users.db')
+DATABASE_NAME = "ovpn"
+USER  = "ovpn"
+PASSWORD = "RawPY7DjZdiW8hD7"
+connection = MySQLDatabase(DATABASE_NAME,
+                         user=USER, password=PASSWORD)
 
 class User(Model):
     id = PrimaryKeyField(null=False)
@@ -8,6 +12,6 @@ class User(Model):
     status = IntegerField()
 
     class Meta:
-        database = users
+        database = connection
         db_table = "users"
         order_by = ('id',)
